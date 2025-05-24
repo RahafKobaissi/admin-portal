@@ -58,7 +58,7 @@ export default function AddStudent() {
       console.log(newStudent);
 
       const response = await fetch(
-        `${import.meta.env.VITE_FUNCTION_URL}?student_id=${id}`,
+        `https://enrollstudents.azurewebsites.net/api/enrollStudent?student_id=${id}`,
         {
           method: "POST",
           headers: {
