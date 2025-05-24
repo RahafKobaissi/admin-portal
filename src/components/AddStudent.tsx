@@ -177,9 +177,6 @@ export default function AddStudent() {
               gap="1"
               accept="image/jpeg"
               onFileChange={(e) => {
-                // console.log(
-                //   e.acceptedFiles[0].bytes().then((e) => console.log(e))
-                // );
                 setImg(e.acceptedFiles[0]);
               }}
             >
