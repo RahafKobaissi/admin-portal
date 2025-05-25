@@ -32,7 +32,7 @@ export default function AddCourse() {
     try {
       setIsLoading(true);
 
-      const c = await addCourse({
+      addCourse({
         code: code,
         name: name,
         class: courseClass,
@@ -78,9 +78,6 @@ export default function AddCourse() {
   return (
     <Container maxW="container.xl" py={8}>
       <Toaster />
-      <Text fontSize={"2rem"} fontWeight={800}>
-        Add Course
-      </Text>
       <VStack marginTop={"5%"}>
         <Field.Root>
           <Field.Label>Code</Field.Label>

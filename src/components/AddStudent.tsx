@@ -4,7 +4,6 @@ import {
   Container,
   Field,
   FileUpload,
-  HStack,
   Input,
   InputGroup,
   Text,
@@ -104,107 +103,111 @@ export default function AddStudent() {
 
   if (isLoading) {
     return (
-      <Container maxW="container.xl" py={8}>
+      <Container maxW="container.xl">
         <Text>Adding Student ...</Text>
       </Container>
     );
   }
 
   return (
-    <Container maxW="container.xl" py={8}>
+    <Container maxW="container.xl">
       <Toaster />
-      <Text fontSize={"2rem"} fontWeight={800}>
-        Add Student
-      </Text>
       <VStack marginTop={"5%"}>
         <Field.Root>
-          <HStack width={"100%"}>
-            <Field.Root>
-              <Field.Label>Id</Field.Label>
-              <Input
-                name="Id"
-                type="number"
-                value={id}
-                onChange={(e) => setId(parseInt(e.target.value))}
-              />
-            </Field.Root>
+          <Field.Root marginTop={"1%"}>
+            <Field.Label fontSize={"1rem"} fontWeight={600}>
+              Id
+            </Field.Label>
+            <Input
+              name="Id"
+              type="number"
+              value={id}
+              onChange={(e) => setId(parseInt(e.target.value))}
+            />
+          </Field.Root>
 
-            <Field.Root>
-              <Field.Label>Name</Field.Label>
-              <Input
-                name="Name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </Field.Root>
-          </HStack>
+          <Field.Root marginTop={"1%"}>
+            <Field.Label fontSize={"1rem"} fontWeight={600}>
+              Name
+            </Field.Label>
+            <Input
+              name="Name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Field.Root>
 
-          <HStack width={"100%"}>
-            <Field.Root>
-              <Field.Label>Age</Field.Label>
-              <Input
-                name="Age"
-                type="number"
-                value={age}
-                onChange={(e) => setAge(parseInt(e.target.value))}
-              />
-            </Field.Root>
+          <Field.Root marginTop={"1%"}>
+            <Field.Label fontSize={"1rem"} fontWeight={600}>
+              Age
+            </Field.Label>
+            <Input
+              name="Age"
+              type="number"
+              value={age}
+              onChange={(e) => setAge(parseInt(e.target.value))}
+            />
+          </Field.Root>
 
-            <Field.Root>
-              <Field.Label>Class</Field.Label>
-              <Input
-                name="Class"
-                type="text"
-                value={stClass}
-                onChange={(e) => setStClass(e.target.value)}
-              />
-            </Field.Root>
-          </HStack>
+          <Field.Root marginTop={"1%"}>
+            <Field.Label fontSize={"1rem"} fontWeight={600}>
+              Class
+            </Field.Label>
+            <Input
+              name="Class"
+              type="text"
+              value={stClass}
+              onChange={(e) => setStClass(e.target.value)}
+            />
+          </Field.Root>
 
-          <HStack width={"100%"}>
-            <Field.Root>
-              <Field.Label>Password</Field.Label>
-              <Input
-                name="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </Field.Root>
+          <Field.Root marginTop={"1%"}>
+            <Field.Label fontSize={"1rem"} fontWeight={600}>
+              Password
+            </Field.Label>
+            <Input
+              name="Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Field.Root>
 
-            <FileUpload.Root
-              gap="1"
-              accept="image/jpeg"
-              onFileChange={(e) => {
-                setImg(e.acceptedFiles[0]);
-              }}
+          <FileUpload.Root
+            marginTop={"1%"}
+            gap="1"
+            accept="image/jpeg"
+            onFileChange={(e) => {
+              setImg(e.acceptedFiles[0]);
+            }}
+          >
+            <FileUpload.HiddenInput />
+            <FileUpload.Label fontSize={"1rem"} fontWeight={600}>
+              Upload file
+            </FileUpload.Label>
+            <InputGroup
+              startElement={<LuFileUp />}
+              endElement={
+                <FileUpload.ClearTrigger asChild>
+                  <CloseButton
+                    me="-1"
+                    size="xs"
+                    variant="plain"
+                    focusVisibleRing="inside"
+                    focusRingWidth="2px"
+                    pointerEvents="auto"
+                  />
+                </FileUpload.ClearTrigger>
+              }
             >
-              <FileUpload.HiddenInput />
-              <FileUpload.Label>Upload file</FileUpload.Label>
-              <InputGroup
-                startElement={<LuFileUp />}
-                endElement={
-                  <FileUpload.ClearTrigger asChild>
-                    <CloseButton
-                      me="-1"
-                      size="xs"
-                      variant="plain"
-                      focusVisibleRing="inside"
-                      focusRingWidth="2px"
-                      pointerEvents="auto"
-                    />
-                  </FileUpload.ClearTrigger>
-                }
-              >
-                <Input asChild>
-                  <FileUpload.Trigger>
-                    <FileUpload.FileText lineClamp={1} />
-                  </FileUpload.Trigger>
-                </Input>
-              </InputGroup>
-            </FileUpload.Root>
-          </HStack>
+              <Input asChild>
+                <FileUpload.Trigger>
+                  <FileUpload.FileText lineClamp={1} />
+                </FileUpload.Trigger>
+              </Input>
+            </InputGroup>
+          </FileUpload.Root>
 
           <Field.Root required marginTop={"2%"}>
             <Button

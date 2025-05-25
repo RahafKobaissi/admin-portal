@@ -125,9 +125,6 @@ export default function AddInstructor() {
   return (
     <Container maxW="container.xl" py={8}>
       <Toaster />
-      <Text fontSize={"2rem"} fontWeight={800}>
-        Add Instructor
-      </Text>
       <VStack marginTop={"5%"}>
         <Field.Root>
           <Field.Label>Id</Field.Label>
