@@ -117,7 +117,7 @@ export default function AddInstructor() {
   if (isLoading) {
     return (
       <Container maxW="container.xl" py={8}>
-        <Text>Adding Student ...</Text>
+        <Text>Adding Instructor ...</Text>
       </Container>
     );
   }

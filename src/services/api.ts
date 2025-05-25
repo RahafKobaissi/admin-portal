@@ -72,6 +72,23 @@ export async function getCourses(): Promise<Course[]> {
   return data.value;
 }
 
+export async function addCourse(course: Course): Promise<Course> {
+  const response = await fetch(`${API_BASE}/Courses`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(course),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Failed to add course: ${errorText}`);
+  }
+  const data = await response.json();
+  return data.value[0];
+}
+
 export async function addInstructorCourse(records: {
   instructor_id: number;
   course_code: string;

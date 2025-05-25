@@ -3,7 +3,8 @@ import "./App.css";
 // import AddStudent from "./components/AddStudent";
 import { useColorMode } from "@/components/ui/color-mode";
 import { useEffect } from "react";
-import AddInstructor from "./components/AddInstructor";
+// import AddInstructor from "./components/AddInstructor";
+import AddCourse from "./components/AddCourse";
 
 function App() {
   const { setColorMode } = useColorMode();
@@ -15,7 +16,8 @@ function App() {
   return (
     <Box>
       {/* <AddStudent /> */}
-      <AddInstructor />
+      {/* <AddInstructor /> */}
+      <AddCourse />
     </Box>
   );
 }
