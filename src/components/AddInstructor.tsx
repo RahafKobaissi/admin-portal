@@ -65,7 +65,6 @@ export default function AddInstructor() {
 
       await addUser({
         user_id: id,
-        username: name,
         password: password,
         role: "instructor",
       });

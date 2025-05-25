@@ -40,7 +40,6 @@ export default function AddStudent() {
       setIsLoading(true);
       const newUser = await addUser({
         user_id: id,
-        username: name,
         password: password,
         role: "student",
       });
