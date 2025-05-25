@@ -36,11 +36,12 @@ export default function AddInstructor() {
       } catch (error) {
         toaster.create({
           title: "Error fetching data",
-          description:
-            error instanceof Error ? error.message : "Failed to load data",
           type: "error",
           duration: 5000,
         });
+        console.log(
+          error instanceof Error ? error.message : "Failed to load data"
+        );
       }
     };
 
