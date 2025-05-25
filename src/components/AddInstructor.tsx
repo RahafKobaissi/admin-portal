@@ -81,7 +81,6 @@ export default function AddInstructor() {
         addInstructorCourse(record);
       });
 
-      setIsLoading(false);
       toaster.create({
         title: "Instructor added",
         type: "success",
@@ -96,7 +95,6 @@ export default function AddInstructor() {
       setId(0);
       setName("");
       setPassword("");
-      setIsLoading(false);
       toaster.create({
         title: "Error adding instructor",
         description:
@@ -104,6 +102,8 @@ export default function AddInstructor() {
         type: "error",
         duration: 5000,
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 

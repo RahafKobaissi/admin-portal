@@ -39,7 +39,6 @@ export default function AddCourse() {
         credits: credits,
       });
 
-      setIsLoading(false);
       toaster.create({
         title: "Course added",
         type: "success",
@@ -56,7 +55,6 @@ export default function AddCourse() {
       setName("");
       setCourseClass("");
       setCredits(0);
-      setIsLoading(false);
       toaster.create({
         title: "Error adding course",
         description:
@@ -64,6 +62,8 @@ export default function AddCourse() {
         type: "error",
         duration: 5000,
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 

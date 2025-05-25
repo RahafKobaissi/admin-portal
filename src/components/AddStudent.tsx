@@ -37,7 +37,6 @@ export default function AddStudent() {
 
     try {
       setIsLoading(true);
-
       const newUser = await addUser({
         user_id: id,
         username: name,
@@ -70,7 +69,6 @@ export default function AddStudent() {
       const data = await response.text();
       console.log(data);
 
-      setIsLoading(false);
       toaster.create({
         title: "Student added",
         type: "success",
@@ -89,8 +87,6 @@ export default function AddStudent() {
       setName("");
       setStClass("");
       setPassword("");
-      setIsLoading(false);
-      setIsLoading(false);
       toaster.create({
         title: "Error adding student",
         description:
@@ -98,12 +94,15 @@ export default function AddStudent() {
         type: "error",
         duration: 5000,
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   if (isLoading) {
     return (
       <Container maxW="container.xl">
+        <Toaster />
         <Text>Adding Student ...</Text>
       </Container>
     );
