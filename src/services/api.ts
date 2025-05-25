@@ -1,4 +1,10 @@
-import type { Student, Instructor, User } from "@/types";
+import type {
+  Student,
+  Instructor,
+  User,
+  Course,
+  Instructor_Course,
+} from "@/types";
 
 const API_BASE = "/data-api/rest";
 
@@ -11,12 +17,17 @@ export async function addStudent(student: Student): Promise<Student> {
     body: JSON.stringify(student),
   });
 
-  if (!response.ok) throw new Error("Failed to add student");
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Failed to add student: ${errorText}`);
+  }
   const data = await response.json();
   return data.value[0];
 }
 
-export async function addInstructor(instructor: Instructor): Promise<Instructor> {
+export async function addInstructor(
+  instructor: Instructor
+): Promise<Instructor> {
   const response = await fetch(`${API_BASE}/Instructors`, {
     method: "POST",
     headers: {
@@ -25,7 +36,10 @@ export async function addInstructor(instructor: Instructor): Promise<Instructor>
     body: JSON.stringify(instructor),
   });
 
-  if (!response.ok) throw new Error("Failed to add instructor");
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Failed to add instructor: ${errorText}`);
+  }
   const data = await response.json();
   return data.value[0];
 }
@@ -39,7 +53,41 @@ export async function addUser(user: User): Promise<User> {
     body: JSON.stringify(user),
   });
 
-  if (!response.ok) throw new Error("Failed to add user");
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Failed to add user: ${errorText}`);
+  }
+  const data = await response.json();
+  return data.value[0];
+}
+
+export async function getCourses(): Promise<Course[]> {
+  const response = await fetch(`${API_BASE}/Courses`);
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Failed to fetch Courses: ${errorText}`);
+  }
+  const data = await response.json();
+  return data.value;
+}
+
+export async function addInstructorCourse(records: {
+  instructor_id: number;
+  course_code: string;
+}): Promise<Instructor_Course> {
+  const response = await fetch(`${API_BASE}/Instructors_Courses`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(records),
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Failed to add instructor_course: ${errorText}`);
+  }
   const data = await response.json();
   return data.value[0];
 }

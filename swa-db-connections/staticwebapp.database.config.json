@@ -56,6 +56,24 @@
           "role": "anonymous"
         }
       ]
+    },
+    "Courses": {
+      "source": "dbo.Courses",
+      "permissions": [
+        {
+          "actions": ["*"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "Instructors_Courses": {
+      "source": "dbo.Instructors_Courses",
+      "permissions": [
+        {
+          "actions": ["*"],
+          "role": "anonymous"
+        }
+      ]
     }
   }
 }

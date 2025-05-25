@@ -1,18 +1,21 @@
 import { Box } from "@chakra-ui/react";
 import "./App.css";
-import AddStudent from "./components/AddStudent";
+// import AddStudent from "./components/AddStudent";
+import { useColorMode } from "@/components/ui/color-mode";
+import { useEffect } from "react";
+import AddInstructor from "./components/AddInstructor";
 
 function App() {
-  // async function list() {
-  //   const endpoint = "/data-api/rest/Students";
-  //   const response = await fetch(endpoint);
-  //   const data = await response.json();
-  //   console.table(data.value);
-  // }
+  const { setColorMode } = useColorMode();
+
+  useEffect(() => {
+    setColorMode("light");
+  }, []);
 
   return (
     <Box>
-      <AddStudent />
+      {/* <AddStudent /> */}
+      <AddInstructor />
     </Box>
   );
 }

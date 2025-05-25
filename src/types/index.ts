@@ -14,5 +14,17 @@ export interface User {
   user_id: number;
   username: string;
   password: string;
-  role: 'student' | 'instructor';
+  role: "student" | "instructor";
+}
+
+export interface Course {
+  code: string;
+  name: string;
+  class: string;
+  credits: number;
+}
+
+export interface Instructor_Course {
+  instructor_id: number;
+  course_code: string;
 }
