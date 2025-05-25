@@ -14,6 +14,7 @@ import {
   Input,
   Portal,
   Select,
+  Spinner,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -61,25 +62,27 @@ export default function AddInstructor() {
     try {
       setIsLoading(true);
 
-      addUser({
+      await addUser({
         user_id: id,
         username: name,
         password: password,
         role: "instructor",
       });
 
-      addInstructor({
+      await addInstructor({
         id: id,
         name: name,
       });
 
-      selectedCourses.map((course_code) => {
-        const record = {
-          instructor_id: id,
-          course_code: course_code,
-        };
-        addInstructorCourse(record);
-      });
+      await Promise.all(
+        selectedCourses.map((course_code) => {
+          const record = {
+            instructor_id: id,
+            course_code: course_code,
+          };
+          return addInstructorCourse(record);
+        })
+      );
 
       toaster.create({
         title: "Instructor added",
@@ -90,18 +93,18 @@ export default function AddInstructor() {
       setId(0);
       setName("");
       setPassword("");
-      setIsLoading(false);
     } catch (error) {
       setId(0);
       setName("");
       setPassword("");
       toaster.create({
         title: "Error adding instructor",
-        description:
-          error instanceof Error ? error.message : "Failed to add instructor",
         type: "error",
         duration: 5000,
       });
+      console.log(
+        error instanceof Error ? error.message : "Failed to add course"
+      );
     } finally {
       setIsLoading(false);
     }
@@ -117,7 +120,11 @@ export default function AddInstructor() {
   if (isLoading) {
     return (
       <Container maxW="container.xl" py={8}>
-        <Text>Adding Instructor ...</Text>
+        <Toaster />
+        <VStack marginTop={"10%"}>
+          <Spinner />
+          <Text>Adding Instructor ...</Text>
+        </VStack>
       </Container>
     );
   }
@@ -193,9 +200,9 @@ export default function AddInstructor() {
           <Button
             type="submit"
             onClick={handleAddInstructor}
-            backgroundColor={"#0db39e"}
+            backgroundColor={"#1e88e5"}
             fontWeight={700}
-            _hover={{ backgroundColor: "#06d6a0" }}
+            _hover={{ backgroundColor: "#4361ee" }}
           >
             Add Instructor
           </Button>

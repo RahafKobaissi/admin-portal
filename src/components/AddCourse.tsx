@@ -5,6 +5,7 @@ import {
   Container,
   Field,
   Input,
+  Spinner,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -32,7 +33,7 @@ export default function AddCourse() {
     try {
       setIsLoading(true);
 
-      addCourse({
+      await addCourse({
         code: code,
         name: name,
         class: courseClass,
@@ -49,7 +50,6 @@ export default function AddCourse() {
       setName("");
       setCourseClass("");
       setCredits(0);
-      setIsLoading(false);
     } catch (error) {
       setCode("");
       setName("");
@@ -57,11 +57,12 @@ export default function AddCourse() {
       setCredits(0);
       toaster.create({
         title: "Error adding course",
-        description:
-          error instanceof Error ? error.message : "Failed to add course",
         type: "error",
         duration: 5000,
       });
+      console.log(
+        error instanceof Error ? error.message : "Failed to add course"
+      );
     } finally {
       setIsLoading(false);
     }
@@ -69,8 +70,12 @@ export default function AddCourse() {
 
   if (isLoading) {
     return (
-      <Container maxW="container.xl" py={8}>
-        <Text>Adding Course ...</Text>
+      <Container maxW="container.xl" py={10}>
+        <Toaster />
+        <VStack marginTop={"10%"}>
+          <Spinner />
+          <Text>Adding Course ...</Text>
+        </VStack>
       </Container>
     );
   }
@@ -123,9 +128,9 @@ export default function AddCourse() {
           <Button
             type="submit"
             onClick={handleAddCourse}
-            backgroundColor={"#0db39e"}
+            backgroundColor={"#1e88e5"}
             fontWeight={700}
-            _hover={{ backgroundColor: "#06d6a0" }}
+            _hover={{ backgroundColor: "#4361ee" }}
           >
             Add Course
           </Button>

@@ -6,6 +6,7 @@ import {
   FileUpload,
   Input,
   InputGroup,
+  Spinner,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -80,7 +81,6 @@ export default function AddStudent() {
       setName("");
       setStClass("");
       setPassword("");
-      setIsLoading(false);
     } catch (error) {
       setId(0);
       setAge(0);
@@ -89,11 +89,12 @@ export default function AddStudent() {
       setPassword("");
       toaster.create({
         title: "Error adding student",
-        description:
-          error instanceof Error ? error.message : "Failed to add student",
         type: "error",
         duration: 5000,
       });
+      console.log(
+        error instanceof Error ? error.message : "Failed to add course"
+      );
     } finally {
       setIsLoading(false);
     }
@@ -101,9 +102,12 @@ export default function AddStudent() {
 
   if (isLoading) {
     return (
-      <Container maxW="container.xl">
+      <Container maxW="container.xl" py={10}>
         <Toaster />
-        <Text>Adding Student ...</Text>
+        <VStack marginTop={"10%"}>
+          <Spinner />
+          <Text>Adding Student ...</Text>
+        </VStack>
       </Container>
     );
   }
@@ -212,9 +216,9 @@ export default function AddStudent() {
             <Button
               type="submit"
               onClick={handleAddStudent}
-              backgroundColor={"#0db39e"}
+              backgroundColor={"#1e88e5"}
               fontWeight={700}
-              _hover={{ backgroundColor: "#06d6a0" }}
+              _hover={{ backgroundColor: "#4361ee" }}
             >
               Add Student
             </Button>
