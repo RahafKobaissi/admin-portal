@@ -5,6 +5,7 @@ import type {
   Course,
   Instructor_Course,
 } from "@/types";
+import bcrypt from "bcryptjs";
 
 const API_BASE = "/data-api/rest";
 
@@ -45,12 +46,18 @@ export async function addInstructor(
 }
 
 export async function addUser(user: User): Promise<User> {
+  const user_hashed = {
+    user_id: user.user_id,
+    password: await bcrypt.hash(user.password, 10),
+    role: user.role,
+  };
+
   const response = await fetch(`${API_BASE}/Users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(user),
+    body: JSON.stringify(user_hashed),
   });
 
   if (!response.ok) {
