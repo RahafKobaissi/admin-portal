@@ -60,6 +60,22 @@ export default function AddInstructor() {
       return;
     }
 
+    const safePattern = /^[a-zA-Z0-9@$!_]+$/;
+    const idValid = safePattern.test(id.toString());
+    const usernameValid = safePattern.test(name);
+    const passwordValid = safePattern.test(password);
+
+    if (!idValid || !usernameValid || !passwordValid) {
+      toaster.create({
+        title: "Invalid input",
+        description:
+          "Only letters, numbers, and the characters @ $ ! _ are allowed.",
+        type: "error",
+        duration: 3000,
+      });
+      return;
+    }
+
     try {
       setIsLoading(true);
 

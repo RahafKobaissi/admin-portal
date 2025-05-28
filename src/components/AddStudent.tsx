@@ -36,6 +36,30 @@ export default function AddStudent() {
       return;
     }
 
+    const safePattern = /^[a-zA-Z0-9@$!_]+$/;
+    const idValid = safePattern.test(id.toString());
+    const nameValid = safePattern.test(name);
+    const ageValid = safePattern.test(age.toString());
+    const stClassValid = safePattern.test(stClass);
+    const passwordValid = safePattern.test(password);
+
+    if (
+      !idValid ||
+      !nameValid ||
+      !ageValid ||
+      !stClassValid ||
+      !passwordValid
+    ) {
+      toaster.create({
+        title: "Invalid input",
+        description:
+          "Only letters, numbers, and the characters @ $ ! _ are allowed.",
+        type: "error",
+        duration: 3000,
+      });
+      return;
+    }
+
     try {
       setIsLoading(true);
       const newUser = await addUser({

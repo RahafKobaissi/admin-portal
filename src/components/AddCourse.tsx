@@ -30,6 +30,23 @@ export default function AddCourse() {
       return;
     }
 
+    const safePattern = /^[a-zA-Z0-9@$!_]+$/;
+    const codeValid = safePattern.test(code);
+    const nameValid = safePattern.test(name);
+    const courseClassValid = safePattern.test(courseClass);
+    const creditsValid = safePattern.test(credits.toString());
+
+    if (!codeValid || !nameValid || !courseClassValid || !creditsValid) {
+      toaster.create({
+        title: "Invalid input",
+        description:
+          "Only letters, numbers, and the characters @ $ ! _ are allowed.",
+        type: "error",
+        duration: 3000,
+      });
+      return;
+    }
+
     try {
       setIsLoading(true);
 
