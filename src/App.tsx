@@ -13,6 +13,8 @@ function App() {
   const [studentSelected, setStudentSelected] = useState(true);
   const [instructorSelected, setInstructorSelected] = useState(false);
 
+  // test the cicd
+
   useEffect(() => {
     setColorMode("light");
   }, []);
