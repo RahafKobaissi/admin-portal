@@ -115,11 +115,13 @@ export default function AddInstructor() {
       setPassword("");
       toaster.create({
         title: "Error adding instructor",
+        description:
+          error instanceof Error ? error.message : "Failed to add instructor",
         type: "error",
-        duration: 5000,
+        duration: 6000,
       });
       console.log(
-        error instanceof Error ? error.message : "Failed to add course"
+        error instanceof Error ? error.message : "Failed to add instructor"
       );
     } finally {
       setIsLoading(false);

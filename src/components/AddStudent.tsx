@@ -62,6 +62,25 @@ export default function AddStudent() {
 
     try {
       setIsLoading(true);
+
+      const response = await fetch(
+        `https://enrollstudents.azurewebsites.net/api/enrollStudent?student_id=${id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": img ? img.type : "application/octet-stream",
+          },
+          body: img,
+        }
+      );
+
+      if ((await response.status) === 400) {
+        throw new Error(await response.text());
+      }
+
+      const data = await response.text();
+      console.log(data);
+
       const newUser = await addUser({
         user_id: id,
         password: password,
@@ -78,20 +97,6 @@ export default function AddStudent() {
       });
 
       console.log(newStudent);
-
-      const response = await fetch(
-        `https://enrollstudents.azurewebsites.net/api/enrollStudent?student_id=${id}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": img ? img.type : "application/octet-stream",
-          },
-          body: img,
-        }
-      );
-
-      const data = await response.text();
-      console.log(data);
 
       toaster.create({
         title: "Student added",
@@ -112,11 +117,13 @@ export default function AddStudent() {
       setPassword("");
       toaster.create({
         title: "Error adding student",
+        description:
+          error instanceof Error ? error.message : "Failed to add student",
         type: "error",
-        duration: 5000,
+        duration: 6000,
       });
       console.log(
-        error instanceof Error ? error.message : "Failed to add course"
+        error instanceof Error ? error.message : "Failed to add student"
       );
     } finally {
       setIsLoading(false);
