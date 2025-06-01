@@ -64,7 +64,7 @@ export default function AddStudent() {
       setIsLoading(true);
 
       const response = await fetch(
-        `https://enrollstudents.azurewebsites.net/api/enrollStudent?student_id=${id}`,
+        `https://enrollstudents.azurewebsites.net/api/enrollStudent?cur_class=${stClass}&student_id=${id}`,
         {
           method: "POST",
           headers: {
