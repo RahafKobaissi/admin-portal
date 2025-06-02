@@ -27,7 +27,7 @@ export default function AddStudent() {
   const handleAddStudent = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!id || !name || !age || !stClass || !password) {
+    if (!id || !name || !age || !stClass || !password || !img) {
       toaster.create({
         title: "Please fill all the fields",
         type: "error",
@@ -36,7 +36,7 @@ export default function AddStudent() {
       return;
     }
 
-    const safePattern = /^[a-zA-Z0-9@$!_]+$/;
+    const safePattern = /^[a-zA-Z0-9@$!_ ]+$/;
     const idValid = safePattern.test(id.toString());
     const nameValid = safePattern.test(name);
     const ageValid = safePattern.test(age.toString());
@@ -48,7 +48,7 @@ export default function AddStudent() {
       !nameValid ||
       !ageValid ||
       !stClassValid ||
-      !passwordValid
+      !passwordValid 
     ) {
       toaster.create({
         title: "Invalid input",
@@ -210,7 +210,7 @@ export default function AddStudent() {
           <FileUpload.Root
             marginTop={"1%"}
             gap="1"
-            accept="image/jpeg"
+            accept={["image/png","image/jpeg","image/jpg"]}
             onFileChange={(e) => {
               setImg(e.acceptedFiles[0]);
             }}

@@ -30,7 +30,7 @@ export default function AddCourse() {
       return;
     }
 
-    const safePattern = /^[a-zA-Z0-9@$!_]+$/;
+    const safePattern = /^[a-zA-Z0-9@$!_ ]+$/;
     const codeValid = safePattern.test(code);
     const nameValid = safePattern.test(name);
     const courseClassValid = safePattern.test(courseClass);
@@ -75,7 +75,7 @@ export default function AddCourse() {
       toaster.create({
         title: "Error adding course",
         description:
-          error instanceof Error ? error.message : "Failed to add course",
+          error instanceof Error ? error.message: "Failed to add course",
         type: "error",
         duration: 6000,
       });
