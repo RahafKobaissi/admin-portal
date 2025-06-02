@@ -60,7 +60,7 @@ export default function AddInstructor() {
       return;
     }
 
-    const safePattern = /^[a-zA-Z0-9@$!_]+$/;
+    const safePattern = /^[a-zA-Z0-9@$!_ ]+$/;
     const idValid = safePattern.test(id.toString());
     const usernameValid = safePattern.test(name);
     const passwordValid = safePattern.test(password);
