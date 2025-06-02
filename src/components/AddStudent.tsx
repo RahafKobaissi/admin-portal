@@ -132,23 +132,37 @@ export default function AddStudent() {
 
   if (isLoading) {
     return (
-      <Container maxW="container.xl" py={10}>
+      <Container
+        maxW="md"
+        bg="white"
+        p={8}
+        borderRadius="md"
+        boxShadow="lg"
+        mt={12}
+      >
         <Toaster />
-        <VStack marginTop={"10%"}>
-          <Spinner />
-          <Text>Adding Student ...</Text>
+        <VStack mt={8}>
+          <Spinner size="lg" color="blue.500" />
+          <Text fontSize="lg" fontWeight="medium">
+            Adding Student...
+          </Text>
         </VStack>
       </Container>
     );
   }
 
   return (
-    <Container maxW="container.xl">
+    <Container bg="white" p={8} borderRadius="md" boxShadow="lg" mt={12}>
       <Toaster />
-      <VStack marginTop={"5%"}>
+      <VStack align="stretch">
         <Field.Root>
-          <Field.Root marginTop={"1%"}>
-            <Field.Label fontSize={"1rem"} fontWeight={600}>
+          <Field.Root>
+            <Field.Label
+              fontSize="1.1rem"
+              fontWeight={600}
+              mb={1}
+              color="gray.700"
+            >
               Id
             </Field.Label>
             <Input
@@ -156,11 +170,19 @@ export default function AddStudent() {
               type="number"
               value={id}
               onChange={(e) => setId(parseInt(e.target.value))}
+              placeholder="Enter student ID"
+              bg="gray.50"
+              _placeholder={{ color: "gray.400" }}
             />
           </Field.Root>
 
           <Field.Root marginTop={"1%"}>
-            <Field.Label fontSize={"1rem"} fontWeight={600}>
+            <Field.Label
+              fontSize="1.1rem"
+              fontWeight={600}
+              mb={1}
+              color="gray.700"
+            >
               Name
             </Field.Label>
             <Input
@@ -168,11 +190,19 @@ export default function AddStudent() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              placeholder="Full name"
+              bg="gray.50"
+              _placeholder={{ color: "gray.400" }}
             />
           </Field.Root>
 
           <Field.Root marginTop={"1%"}>
-            <Field.Label fontSize={"1rem"} fontWeight={600}>
+            <Field.Label
+              fontSize="1.1rem"
+              fontWeight={600}
+              mb={1}
+              color="gray.700"
+            >
               Age
             </Field.Label>
             <Input
@@ -180,11 +210,19 @@ export default function AddStudent() {
               type="number"
               value={age}
               onChange={(e) => setAge(parseInt(e.target.value))}
+              placeholder="Age"
+              bg="gray.50"
+              _placeholder={{ color: "gray.400" }}
             />
           </Field.Root>
 
           <Field.Root marginTop={"1%"}>
-            <Field.Label fontSize={"1rem"} fontWeight={600}>
+            <Field.Label
+              fontSize="1.1rem"
+              fontWeight={600}
+              mb={1}
+              color="gray.700"
+            >
               Class
             </Field.Label>
             <Input
@@ -192,11 +230,19 @@ export default function AddStudent() {
               type="text"
               value={stClass}
               onChange={(e) => setStClass(e.target.value)}
+              placeholder="e.g., I4"
+              bg="gray.50"
+              _placeholder={{ color: "gray.400" }}
             />
           </Field.Root>
 
           <Field.Root marginTop={"1%"}>
-            <Field.Label fontSize={"1rem"} fontWeight={600}>
+            <Field.Label
+              fontSize="1.1rem"
+              fontWeight={600}
+              mb={1}
+              color="gray.700"
+            >
               Password
             </Field.Label>
             <Input
@@ -204,6 +250,9 @@ export default function AddStudent() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter a secure password"
+              bg="gray.50"
+              _placeholder={{ color: "gray.400" }}
             />
           </Field.Root>
 
@@ -234,7 +283,7 @@ export default function AddStudent() {
                 </FileUpload.ClearTrigger>
               }
             >
-              <Input asChild>
+              <Input asChild bg="gray.50">
                 <FileUpload.Trigger>
                   <FileUpload.FileText lineClamp={1} />
                 </FileUpload.Trigger>
@@ -242,13 +291,18 @@ export default function AddStudent() {
             </InputGroup>
           </FileUpload.Root>
 
-          <Field.Root required marginTop={"2%"}>
+          <Field.Root marginTop={"1%"} required>
             <Button
               type="submit"
-              onClick={handleAddStudent}
-              backgroundColor={"#1e88e5"}
+              backgroundColor="blue.500"
+              color="white"
               fontWeight={700}
-              _hover={{ backgroundColor: "#4361ee" }}
+              _hover={{ backgroundColor: "blue.600" }}
+              w="50%"
+              py={4}
+              mt={4}
+              onClick={handleAddStudent}
+              alignSelf={"center"}
             >
               Add Student
             </Button>

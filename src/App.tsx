@@ -5,7 +5,13 @@ import { useColorMode } from "@/components/ui/color-mode";
 import { useEffect, useState } from "react";
 import AddInstructor from "./components/AddInstructor";
 import AddCourse from "./components/AddCourse";
-import { BrowserRouter, Link, Route, Routes, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
 
 function Main() {
   const { setColorMode } = useColorMode();
@@ -13,7 +19,7 @@ function Main() {
   const [studentSelected, setStudentSelected] = useState(true);
   const [instructorSelected, setInstructorSelected] = useState(false);
   const location = useLocation();
-  
+
   useEffect(() => {
     setColorMode("light");
     // Sync state with the current URL
@@ -40,8 +46,13 @@ function Main() {
 
   return (
     <Box>
-      <Flex justifyContent={"space-between"}>
-        <Text fontSize={"2rem"} fontWeight={800}>
+      <Flex
+        justifyContent={"space-between"}
+        borderRadius="md"
+        boxShadow="lg"
+        p={8}
+      >
+        <Text fontSize={"2rem"} fontWeight={700}>
           {title}
         </Text>
         <HStack>
@@ -49,10 +60,10 @@ function Main() {
             <Button
               backgroundColor={"transparent"}
               borderBottom={
-                studentSelected ? "2px solid #1e88e5" : "1px solid #1e88e5"
+                studentSelected ? "2px solid black" : "1px solid black"
               }
-              _hover={{ borderBottom: "2px solid #1e88e5" }}
-              color={"#1e88e5"}
+              _hover={{ borderBottom: "2px solid black" }}
+              color={"black"}
               fontWeight={studentSelected ? 700 : 400}
             >
               Add Student
@@ -63,10 +74,10 @@ function Main() {
             <Button
               backgroundColor={"transparent"}
               borderBottom={
-                instructorSelected ? "2px solid #1e88e5" : "1px solid #1e88e5"
+                instructorSelected ? "2px solid black" : "1px solid black"
               }
-              _hover={{ borderBottom: "2px solid #1e88e5" }}
-              color={"#1e88e5"}
+              _hover={{ borderBottom: "2px solid black" }}
+              color={"black"}
               fontWeight={instructorSelected ? 700 : 400}
             >
               Add Instructor
@@ -78,14 +89,12 @@ function Main() {
               backgroundColor={"transparent"}
               borderBottom={
                 !studentSelected && !instructorSelected
-                  ? "2px solid #1e88e5"
-                  : "1px solid #1e88e5"
+                  ? "2px solid black"
+                  : "1px solid black"
               }
-              _hover={{ borderBottom: "2px solid #1e88e5" }}
-              color={"#1e88e5"}
-              fontWeight={
-                !studentSelected && !instructorSelected ? 700 : 400
-              }
+              _hover={{ borderBottom: "2px solid black" }}
+              color={"black"}
+              fontWeight={!studentSelected && !instructorSelected ? 700 : 400}
             >
               Add Course
             </Button>

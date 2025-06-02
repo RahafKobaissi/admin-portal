@@ -137,63 +137,113 @@ export default function AddInstructor() {
 
   if (isLoading) {
     return (
-      <Container maxW="container.xl" py={8}>
+      <Container
+        maxW="md"
+        bg="white"
+        p={8}
+        borderRadius="md"
+        boxShadow="lg"
+        mt={12}
+      >
         <Toaster />
-        <VStack marginTop={"10%"}>
-          <Spinner />
-          <Text>Adding Instructor ...</Text>
+        <VStack mt={8}>
+          <Spinner size="lg" color="blue.500" />
+          <Text fontSize="lg" fontWeight="medium">
+            Adding Instructor...
+          </Text>
         </VStack>
       </Container>
     );
   }
 
   return (
-    <Container maxW="container.xl" py={8}>
+    <Container bg="white" p={8} borderRadius="md" boxShadow="lg" mt={12}>
       <Toaster />
-      <VStack marginTop={"5%"}>
+      <VStack>
         <Field.Root>
-          <Field.Label>Id</Field.Label>
+          <Field.Label
+            fontSize="1.1rem"
+            fontWeight={600}
+            mb={1}
+            color="gray.700"
+          >
+            Id
+          </Field.Label>
           <Input
             name="Id"
             type="number"
             value={id}
             onChange={(e) => setId(parseInt(e.target.value))}
+            placeholder="Enter instructor ID"
+            bg="gray.50"
+            _placeholder={{ color: "gray.400" }}
           />
         </Field.Root>
 
-        <Field.Root>
-          <Field.Label>Name</Field.Label>
+        <Field.Root marginTop={"1%"}>
+          <Field.Label
+            fontSize="1.1rem"
+            fontWeight={600}
+            mb={1}
+            color="gray.700"
+          >
+            Name
+          </Field.Label>
           <Input
             name="Name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            placeholder="Full name"
+            bg="gray.50"
+            _placeholder={{ color: "gray.400" }}
           />
         </Field.Root>
 
-        <Field.Root>
-          <Field.Label>Password</Field.Label>
+        <Field.Root marginTop={"1%"}>
+          <Field.Label
+            fontSize="1.1rem"
+            fontWeight={600}
+            mb={1}
+            color="gray.700"
+          >
+            Password
+          </Field.Label>
           <Input
             name="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter a secure password"
+            bg="gray.50"
+            _placeholder={{ color: "gray.400" }}
           />
         </Field.Root>
 
-        <Field.Root>
-          <Field.Label>Courses</Field.Label>
+        <Field.Root marginTop={"1%"}>
+          <Field.Label
+            fontSize="1.1rem"
+            fontWeight={600}
+            mb={1}
+            color="gray.700"
+          >
+            Courses
+          </Field.Label>
           <Select.Root
             multiple
             collection={coursesCollection}
             onValueChange={(e) => {
               setSelectedCourses(e.value);
             }}
+            bg="gray.50"
           >
             <Select.HiddenSelect />
             <Select.Control>
               <Select.Trigger>
-                <Select.ValueText placeholder="Select Courses" />
+                <Select.ValueText
+                  placeholder="Select Courses"
+                  color="gray.400"
+                />
               </Select.Trigger>
               <Select.IndicatorGroup>
                 <Select.Indicator />
@@ -214,13 +264,18 @@ export default function AddInstructor() {
           </Select.Root>
         </Field.Root>
 
-        <Field.Root required marginTop={"2%"}>
+        <Field.Root marginTop={"1%"} required>
           <Button
             type="submit"
-            onClick={handleAddInstructor}
-            backgroundColor={"#1e88e5"}
+            backgroundColor="blue.500"
+            color="white"
             fontWeight={700}
-            _hover={{ backgroundColor: "#4361ee" }}
+            _hover={{ backgroundColor: "blue.600" }}
+            w="50%"
+            py={4}
+            mt={4}
+            onClick={handleAddInstructor}
+            alignSelf={"center"}
           >
             Add Instructor
           </Button>

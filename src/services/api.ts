@@ -114,3 +114,11 @@ export async function getCourses(): Promise<Course[]> {
   const data = await response.json();
   return data.value;
 }
+
+export async function deleteStudent(student_id: number): Promise<number> {
+  const response = await fetch(`${API_BASE}/Users/user_id/${student_id}`, {
+    method: "DELETE",
+  });
+  if (!response.ok) throw new Error("Failed to delete student");
+  return student_id;
+}

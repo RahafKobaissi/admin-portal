@@ -89,67 +89,121 @@ export default function AddCourse() {
 
   if (isLoading) {
     return (
-      <Container maxW="container.xl" py={10}>
+      <Container
+        maxW="md"
+        bg="white"
+        p={8}
+        borderRadius="md"
+        boxShadow="lg"
+        mt={12}
+      >
         <Toaster />
-        <VStack marginTop={"10%"}>
-          <Spinner />
-          <Text>Adding Course ...</Text>
+        <VStack gap={4} mt={8}>
+          <Spinner size="lg" color="blue.500" />
+          <Text fontSize="lg" fontWeight="medium">
+            Adding Course...
+          </Text>
         </VStack>
       </Container>
     );
   }
 
   return (
-    <Container maxW="container.xl" py={8}>
+    <Container bg="white" p={8} borderRadius="md" boxShadow="lg" mt={12}>
       <Toaster />
-      <VStack marginTop={"5%"}>
+      <VStack>
         <Field.Root>
-          <Field.Label>Code</Field.Label>
+          <Field.Label
+            fontSize="1.1rem"
+            fontWeight={600}
+            mb={1}
+            color="gray.700"
+          >
+            Code
+          </Field.Label>
           <Input
             name="Code"
             type="text"
             value={code}
             onChange={(e) => setCode(e.target.value)}
+            placeholder="Enter course code"
+            bg="gray.50"
+            _placeholder={{ color: "gray.400" }}
           />
         </Field.Root>
 
-        <Field.Root>
-          <Field.Label>Name</Field.Label>
+        <Field.Root marginTop={"1%"}>
+          <Field.Label
+            fontSize="1.1rem"
+            fontWeight={600}
+            mb={1}
+            color="gray.700"
+          >
+            Name
+          </Field.Label>
           <Input
             name="Name"
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            placeholder="Enter course name"
+            bg="gray.50"
+            _placeholder={{ color: "gray.400" }}
           />
         </Field.Root>
 
-        <Field.Root>
-          <Field.Label>Class</Field.Label>
+        <Field.Root marginTop={"1%"}>
+          <Field.Label
+            fontSize="1.1rem"
+            fontWeight={600}
+            mb={1}
+            color="gray.700"
+          >
+            Class
+          </Field.Label>
           <Input
             name="Class"
             type="text"
             value={courseClass}
             onChange={(e) => setCourseClass(e.target.value)}
+            placeholder="e.g., I4"
+            bg="gray.50"
+            _placeholder={{ color: "gray.400" }}
           />
         </Field.Root>
 
-        <Field.Root>
-          <Field.Label>Credits</Field.Label>
+        <Field.Root marginTop={"1%"}>
+          <Field.Label
+            fontSize="1.1rem"
+            fontWeight={600}
+            mb={1}
+            color="gray.700"
+          >
+            Credits
+          </Field.Label>
           <Input
             name="Credits"
             type="number"
             value={credits}
             onChange={(e) => setCredits(parseInt(e.target.value))}
+            placeholder="Enter credits"
+            bg="gray.50"
+            _placeholder={{ color: "gray.400" }}
           />
         </Field.Root>
 
-        <Field.Root marginTop={"2%"}>
+        <Field.Root marginTop={"1%"}>
           <Button
             type="submit"
-            onClick={handleAddCourse}
-            backgroundColor={"#1e88e5"}
+            backgroundColor="blue.500"
+            color="white"
             fontWeight={700}
-            _hover={{ backgroundColor: "#4361ee" }}
+            _hover={{ backgroundColor: "blue.600" }}
+            w="50%"
+            py={4}
+            mt={4}
+            onClick={handleAddCourse}
+            alignSelf={"center"}
           >
             Add Course
           </Button>
