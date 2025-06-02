@@ -75,7 +75,7 @@ export default function AddCourse() {
       toaster.create({
         title: "Error adding course",
         description:
-          error instanceof Error ? error.message: "Failed to add course",
+          error instanceof Error ? error.message : "Failed to add course",
         type: "error",
         duration: 6000,
       });

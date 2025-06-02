@@ -48,7 +48,7 @@ export default function AddStudent() {
       !nameValid ||
       !ageValid ||
       !stClassValid ||
-      !passwordValid 
+      !passwordValid
     ) {
       toaster.create({
         title: "Invalid input",
@@ -210,7 +210,7 @@ export default function AddStudent() {
           <FileUpload.Root
             marginTop={"1%"}
             gap="1"
-            accept={["image/png","image/jpeg","image/jpg"]}
+            accept={["image/png", "image/jpeg", "image/jpg"]}
             onFileChange={(e) => {
               setImg(e.acceptedFiles[0]);
             }}

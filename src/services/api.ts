@@ -25,8 +25,8 @@ export async function addUser(user: User): Promise<User> {
   });
 
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Failed to add user: ${errorText}`);
+    const errorText = await response.json();
+    throw new Error(errorText.error.message);
   }
   const data = await response.json();
   return data.value[0];
@@ -42,14 +42,16 @@ export async function addStudent(student: Student): Promise<Student> {
   });
 
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Failed to add student: ${errorText}`);
+    const errorText = await response.json();
+    throw new Error(errorText.error.message);
   }
   const data = await response.json();
   return data.value[0];
 }
 
-export async function addInstructor(instructor: Instructor): Promise<Instructor> {
+export async function addInstructor(
+  instructor: Instructor
+): Promise<Instructor> {
   const response = await fetch(`${API_BASE}/Instructors`, {
     method: "POST",
     headers: {
@@ -59,8 +61,8 @@ export async function addInstructor(instructor: Instructor): Promise<Instructor>
   });
 
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Failed to add instructor: ${errorText}`);
+    const errorText = await response.json();
+    throw new Error(errorText.error.message);
   }
   const data = await response.json();
   return data.value[0];
@@ -76,14 +78,16 @@ export async function addCourse(course: Course): Promise<Course> {
   });
 
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Failed to add course: ${errorText}`);
+    const errorText = await response.json();
+    throw new Error(errorText.error.message);
   }
   const data = await response.json();
   return data.value[0];
 }
 
-export async function addInstructorCourse(record: Instructor_Course): Promise<Instructor_Course> {
+export async function addInstructorCourse(
+  record: Instructor_Course
+): Promise<Instructor_Course> {
   const response = await fetch(`${API_BASE}/Instructors_Courses`, {
     method: "POST",
     headers: {
@@ -93,8 +97,8 @@ export async function addInstructorCourse(record: Instructor_Course): Promise<In
   });
 
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Failed to add instructor_course: ${errorText}`);
+    const errorText = await response.json();
+    throw new Error(errorText.error.message);
   }
   const data = await response.json();
   return data.value[0];
@@ -104,8 +108,8 @@ export async function getCourses(): Promise<Course[]> {
   const response = await fetch(`${API_BASE}/Courses`);
 
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Failed to fetch Courses: ${errorText}`);
+    const errorText = await response.json();
+    throw new Error(errorText.error.message);
   }
   const data = await response.json();
   return data.value;
